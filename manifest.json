@@ -1,0 +1,43 @@
+{
+  "name": "DAD2.0",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/img/logo.png",
+      "32": "/img/logo.png",
+      "48": "/img/logo.png",
+      "128": "/img/logo.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "js": ["content.js"],
+      "match_about_blank": true,
+      "matches": [
+        "\u003Call_urls>"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "/img/logo.png",
+    "32": "/img/logo.png",
+    "48": "/img/logo.png",
+    "128": "/img/logo.png"
+  },
+  "host_permissions": [
+    "*://*/*",
+    "<all_urls>"
+  ]
+}
