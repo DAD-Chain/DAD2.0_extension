@@ -106,67 +106,8 @@ function isEnglish(s) {
   }
   return true;
 }
-// document.onkeydown = function (e) {
 
-//   e = e || window.event;
-//   var key = e.keyCode || e.which;
-//   OnCheckCloseWindow();
-// }
-function isChinese(temp) {
-  var re = /[^\u4e00-\u9fa5]/;
-  if (re.test(temp)) return false;
-  return true;
-}
-function isJapanese(temp) {
-  var re = /[^\u0800-\u4e00]/;
-  if (re.test(temp)) return false;
-  return true;
-}
 
-function isKoera(chr) {
-
-  if (((chr > 0x3130 && chr < 0x318F) ||
-    (chr >= 0xAC00 && chr <= 0xD7A3))) {
-    return true;
-  }
-  return false;
-}
-function isContainKoera(temp) {
-  var cnt = 0;
-  for (var i = 0; i < temp.length; i++) {
-    if (isKoera(temp.charAt(i)))
-      cnt++;
-  }
-  if (cnt > 0) return true;
-  return false;
-}
-function isContainChinese(temp) {
-  var cnt = 0;
-  for (var i = 0; i < temp.length; i++) {
-    if (isChinese(temp.charAt(i)))
-      cnt++;
-  }
-  if (cnt > 5) return true;
-  return false;
-}
-function isContainChinese2(temp) {
-  var cnt = 0;
-  for (var i = 0; i < temp.length; i++) {
-    if (isChinese(temp.charAt(i)))
-      cnt++;
-  }
-  if (cnt > 0 && temp.length <= 3) return true;
-  return false;
-}
-function isContainJapanese(temp) {
-  var cnt = 0;
-  for (var i = 0; i < temp.length; i++) {
-    if (isJapanese(temp.charAt(i)))
-      cnt++;
-  }
-  if (cnt > 2) return true;
-  return false;
-}
 function ExtractEnglish(word) {
   var patt1 = new RegExp(/([a-zA-Z ]+)/);
 
@@ -384,10 +325,9 @@ function getPostAndAds(word) {
   chrome.runtime.sendMessage({
     'word': word
   }, function (data) {
-    // if(typeof(data) != "undefined"){
-    // alert(data)
+
     onText(data);
-    // }
+
   });
 }
 
